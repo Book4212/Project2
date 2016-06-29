@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sec:</strong>
+  <%= @sec.sec %>
+</p>
+
+<p>
+  <strong>Years:</strong>
+  <%= @sec.years %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @sec.term %>
+</p>
+
+<p>
+  <strong>Classroom:</strong>
+  <%= @sec.classroom %>
+</p>
+
+<p>
+  <strong>Timestudy:</strong>
+  <%= @sec.timestudy %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @sec.subject.subject_ID %>
+  <%= @sec.subject.subject_Name %>
+</p>
+
+<%= link_to 'Edit', edit_sec_path(@sec) %> |
+<%= link_to 'Back', secs_path %>

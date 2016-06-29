@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Teachers</h1>
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Teacherid</th>
+      <th>Name</th>
+      <th>Faculty</th>
+      <th>Department</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.teacherid %></td>
+        <td><%= teacher.user.name %></td>
+        <td><%= teacher.department.faculty.facultyname%></td>
+        <td><%= teacher.department.departmentname %></td>
+        <td><%= link_to 'Show', teacher %></td>
+        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
+        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Teacher', new_teacher_path %>

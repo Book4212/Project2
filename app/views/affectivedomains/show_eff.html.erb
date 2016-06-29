@@ -1,0 +1,99 @@
+<p id="notice"><%= notice %></p>
+
+<h1>บันทึกการให้คะแนนจิตพิสัย</h1>
+<div class="table-responsive">
+<table class="table">
+  <tr>
+    <th class="change" >
+      รหัสนักศึกษา
+    </th>
+    <th class="change" >
+      <%= @user.student.studentid %>
+    </th>
+    <th class="change" >
+      ชื่อนักศึกษา
+    </th>
+    <th class="change" >
+      <%= @user.name %>
+    </th>
+  </tr>
+
+  <tr>
+    <th class="change" >
+      วิชา
+    </th>
+    <th class="change" >
+      <%= @sec.subject.subject_ID %>
+      <%= @sec.subject.subject_Name %>
+    </th>
+    <th class="change" >
+      นักศึกษาชั้นปีที่
+    </th>
+    <th class="change" >
+      <%= @sec.years.to_i - @user.student.firstyear %>
+    </th>
+  </tr>
+
+  <tr>
+    <th class="change" >
+      สาขาวิชา
+    </th>
+    <th class="change" >
+      <%= @user.student.department.departmentname %>
+    </th>
+    <th class="change" >
+      ภาควิชา
+    </th>
+    <th class="change" >
+      <%= @user.student.department.faculty.facultyname %>
+    </th>
+  </tr>
+
+  <tr>
+    <th class="change" >
+      คะแนนจิตพิสัยรวม
+    </th>
+    <th class="change" >
+      <%= @point %>
+    </th>
+    <th class="change" >
+      คะแนน
+    </th>
+    <th class="change" >
+    </th>
+  </tr>
+
+</table>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th class="change"><%= link_to 'ชื่อ', eff_show_student_path(:colum => 'name',:sec_id => @sec) %></th>
+      <th class="change"><%= link_to 'วิชา', eff_show_student_path(:colum => 'subject_name',:sec_id => @sec) %></th>
+      <th class="change"><%= link_to 'ตอนเรียน', eff_show_student_path(:colum => 'sec',:sec_id => @sec) %></th>
+      <th class="change"><%= link_to 'คะแนน', eff_show_student_path(:colum => 'point',:sec_id => @sec) %></th>
+      <th class="change"><%= link_to 'วันที่บันทึก', eff_show_student_path(:colum => 'active_day',:sec_id => @sec) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @affectivedomains.each do |affectivedomain| %>
+      <tr>
+        <td class="change"><%= affectivedomain.user.name %></td>
+        <td class="change"><%= affectivedomain.sec.subject.subject_ID %> <%= affectivedomain.sec.subject.subject_Name %></td>
+        <td class="change"><%= affectivedomain.sec.sec %></td>
+        <td class="change"><%= affectivedomain.point %></td>
+        <td class="change"><%= affectivedomain.active_day %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<% if !teacher_user? %>
+  <td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>
+<% end %>
+<% if !student_user? %>
+  <td><%= link_to 'BACK', study_show_student_path(@sec), class: "btn btn-primary btn-default active" %></td>
+<% end %>
+<br>
+

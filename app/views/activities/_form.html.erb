@@ -1,0 +1,75 @@
+<%= form_for(@activity) do |f| %>
+  <% if @activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+      <% @activity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :activityname %><br>
+    <%= f.text_field :activityname %>
+  </div>
+  <div class="field">
+    <%= f.label :dateactivity %><br>
+    <%= f.datetime_select :dateactivity %>
+  </div>
+  <div class="field">
+    <%= f.label :place %><br>
+    <%= f.text_field :place %>
+  </div>
+  <div class="field">
+    <%= f.label :count %><br>
+    <%= f.number_field :counts %>
+  </div>
+
+  <select name="subject" class="form-control" id = "subject_select">
+    <% @subjects.each do |subject| %>
+      <option value="<%= subject.id %>"> <%= subject.subject_Name %> </option>
+    <% end %>
+  </select>
+
+  <select name="sec" class="form-control" id = "sec_select">
+    
+  </select>
+
+  <!-- <div class="field">
+    <%= f.label :sec_id %><br>
+    <%= f.text_field :sec_id %>
+  </div> -->
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+  
+  $('#subject_select').click(function(){
+    var subject_id = $('#subject_select').val();
+    var url = "/findsec/" + subject_id
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: url,
+      success: function(data){
+        console.log(data);
+        var option = "<option> </option>"
+        for (var i = 0; i < data.length ; i++) {
+          console.log(data[i]["sec"]);
+          option += "<option value=\'" + data[i]["id"] + "\'>";
+          option += data[i]["sec"] + "</option>";
+
+
+        }
+    document.getElementById("sec_select").innerHTML = option;
+
+  }
+  })});
+
+</script>

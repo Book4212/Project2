@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ข้อมูลนักศึกษาที่เรียน</h1>
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th class="change"><%= link_to "รหัสนักศึกษา", study_show_student_path(:colum => 'user') %></th class="change">
+      <th class="change"><%= link_to "ชื่อนักศึกษา", study_show_student_path(:colum => 'name') %></th>
+      <th class="change"><%= link_to "สาขาวิชา", study_show_student_path(:colum => 'department') %></th>
+      <th class="change"><%= link_to "คณะ", study_show_student_path(:colum => 'faculty') %></th>
+      <th class="change"><%= link_to "วิชา", study_show_student_path(:colum => 'subject_ID') %></th>
+      <th class="change"><%= link_to "ตอนเรียน", study_show_student_path(:colum => 'sec') %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @studies.each do |study| %>
+      <tr>
+        <td class="change"><%= study.user.student.studentid %></td>
+        <td class="change"><%= link_to study.user.name, user_path(study.user)%></td>
+        <td class="change"><%= study.user.student.department.departmentname %></td>
+        <td class="change"><%= study.user.student.department.faculty.facultyname %></td>
+        <td class="change"><%= study.sec.subject.subject_Name %></td>
+        <td class="change"><%= study.sec.sec %></td>
+        <td class="change"><%= link_to 'ข้อมูลเช็คชื่อเข้าชั้นเรียน', check_show_study_path(:user_id => study.user,:sec_id => study.sec), class: "btn btn-warning btn-xs active" %></td>
+        <td class="change"><%= link_to 'ข้อมูลคะแนนจิตพิสัย', eff_show_student_path(:user_id => study.user,:sec_id => study.sec), class: "btn btn-success btn-xs active" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>
+

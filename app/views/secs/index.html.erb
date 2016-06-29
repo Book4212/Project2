@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>รายวิชา</h1>
+  <%= form_tag("/secs", method: :get) do %>
+    <tr>
+      <th><%= text_field_tag('search') %></th>
+      <th><%= submit_tag "ค้นหา" %></th>
+    </tr>
+  <% end %>
+<div class="table-responsive">
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th class="change"><%= link_to "วิชา", secs_path(:colum => 'subject_ID') %></th>
+      <th class="change"><%= link_to "ตอนเรียน", secs_path(:colum => 'sec') %></th>
+      <th class="change"><%= link_to "ปีการศึกษา", secs_path(:colum => 'years') %></th>
+      <th class="change"><%= link_to "ภาคการศึกษา", secs_path(:colum => 'term') %></th>
+      <th class="change"><%= link_to "ห้องเรียน", secs_path(:colum => 'classroom') %></th>
+      <th class="change"><%= link_to "เวลาเรียนเริ่มเรียน", secs_path(:colum => 'timestudy') %></th>
+      <% if admin_user? %>
+        <th colspan="7"></th>
+      <% elsif student_user? %>
+        <th colspan="4"></th>
+      <% else %>
+        <th colspan="3"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @secs.each do |sec| %>
+      <tr>
+        <td class="change"><%= sec.subject.subject_ID %> <%= sec.subject.subject_Name %></td>
+        <td class="change"><%= sec.sec %></td>
+        <td class="change"><%= sec.years %></td>
+        <td class="change"><%= sec.term %></td>
+        <td class="change"><%= sec.classroom %></td>
+        <td class="change"><%= sec.timestudy.strftime('%H:%M:%S') %>
+
+      
+        <td><%= link_to 'อาจารย์ผู้สอน', teach_show_sec_path(sec), class: "btn btn-primary btn-xs active" %></td>
+
+        <% if teacher_user? %>
+        <td><%= link_to 'นักศึกษา', study_show_student_path(sec), class: "btn btn-warning btn-xs active" %></td>
+        <% end %>
+        <% if student_user? %>
+          <td><%= link_to 'ข้อมูลเช็คชื่อเข้าชั้นเรียน', check_show_study_path(:user_id => current_user,:sec_id => sec), class: "btn btn-warning btn-xs active" %></td>
+          <td><%= link_to 'ข้อมูลคะแนนจิตพิสัย', eff_show_student_path(:user_id =>current_user,:sec_id => sec), class: "btn btn-success btn-xs active" %></td>
+        <% end %>
+        <% if admin_user? %>
+          <td><%= link_to 'นักศึกษา', study_show_student_path(sec), class: "btn btn-warning btn-xs active" %></td>
+        <% end %>
+
+        <td><%= link_to 'กิจกรรม', activity_show_sec_path(sec), class: "btn btn-info btn-xs active" %></td>
+
+        <% if admin_user? %>
+          <td><%= link_to 'Show', sec %></td>
+          <td><%= link_to 'Edit', edit_sec_path(sec) %></td>
+          <td><%= link_to 'Destroy', sec, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+

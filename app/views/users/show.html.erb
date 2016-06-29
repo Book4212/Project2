@@ -1,0 +1,69 @@
+<% provide(:title, @user.name) %>
+<!-- <div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.name %>
+        <%= @user.role %>
+      </h1>
+    </section>
+  </aside>
+</div> -->
+
+<p>
+  <strong>ชื่อ : </strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>บทบาท : </strong>
+  <%= @user.role %>
+</p>
+<% if @user.role == "teacher" %>
+<p>
+  <strong>รหัสอาจารย์ : </strong>
+  <%= @user.teacher.teacherid %>
+</p>
+
+<p>
+  <strong>สาขาวิชา : </strong>
+  <%= @user.teacher.department.departmentname %>
+</p>
+
+<p>
+  <strong>คณะ : </strong>
+  <%= @user.teacher.department.faculty.facultyname %>
+</p>
+<% end %>
+
+<% if @user.role == "student" %>
+<p>
+  <strong>รหัสนักศึกษา : </strong>
+  <%= @user.student.studentid %>
+</p>
+
+<p>
+  <strong>UID : </strong>
+  <%= @user.student.uid %>
+</p>
+
+<!--<p>
+  <strong>facebook:</strong>
+  <%= @user.student.facebook %>
+</p>-->
+
+<p>
+  <strong>ปีการศึกษาแรกที่เข้าเรียน : </strong>
+  <%= @user.student.firstyear %>
+</p>
+
+<p>
+  <strong>สาขาวิชา : </strong>
+  <%= @user.student.department.departmentname %>
+</p>
+
+<p>
+  <strong>คณะ : </strong>
+  <%= @user.student.department.faculty.facultyname %>
+</p>
+<% end %>

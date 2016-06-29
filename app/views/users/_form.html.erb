@@ -1,0 +1,27 @@
+
+<%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label 'ชื่อและนามสกุล' %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label 'ชื่อบัญชีผู้ใช้งาน' %>
+      <%= f.text_field :email, class: 'form-control' %>
+
+      <%= f.label 'รหัสบัตรประจำตัวประชาชน' %>
+      <%= f.text_field :identification, class: 'form-control' %>
+
+      <% if admin_user? %>
+        <%= f.label :role %>
+        <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+      <% end %>
+
+      <%= f.label 'รหัสผ่าน' %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "ยืนยันรหัสผ่าน" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+
+      <%= f.submit "ยืนยัน", class: "btn btn-primary" %>
+    <% end %>

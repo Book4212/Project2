@@ -1,0 +1,47 @@
+<%= form_for(@sec) do |f| %>
+  <% if @sec.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sec.errors.count, "error") %> prohibited this sec from being saved:</h2>
+
+      <ul>
+      <% @sec.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=  %>
+  <div class="field">
+    <%= f.label :sec %><br>
+    <%= f.text_field :sec %>
+  </div>
+  <div class="field">
+    <%= f.label :years %><br>
+    <%= f.text_field :years %>
+  </div>
+  <div class="field">
+    <%= f.label :term %><br>
+    <%= f.text_field :term %>
+  </div>
+  <div class="field">
+    <%= f.label :classroom %><br>
+    <%= f.text_field :classroom %>
+  </div>
+  <div class="field">
+    <%= f.label :timestudy %><br>
+    <%= f.time_select :timestudy %>
+  </div>
+  
+  <select name="subject" class="form-control">
+    <% @subjects.each do |subject| %>
+      <option value="<%= subject.id %>"> <%= subject.subject_Name %> <%= subject.subject_ID %> </option>
+    <% end %>
+  </select>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>บันทึกการเช็คชื่อเข้าร่วมกิจกรรม</h1>
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th class="change"><%= link_to 'ชื่อ', check_show_activity_path(:colum => 'name' )%></th>
+      <th class="change"><%= link_to 'ชื่อกิจกรรม', check_show_activity_path(:colum => 'activityname' )%></th>
+      <th class="change"><%= link_to 'เวลา', check_show_activity_path(:colum => 'time' )%></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @checkactivities.each do |checkactivity| %>
+      <tr>
+        <td class="change"><%= checkactivity.user.name %></td>
+        <td class="change"><%= checkactivity.activity.activityname %>
+        <td class="change"><%= checkactivity.time_check %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<td><%= link_to 'BACK', activity_show_sec_path(@activity), class: "btn btn-primary btn-default active" %></td>
+<br>
+

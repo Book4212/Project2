@@ -1,0 +1,31 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+
+    <% if logged_in? %>
+      <%= link_to "ระบบเพื่อการเช็คชื่อและให้คะแนนจิตพิสัย", users_path, id: "logo" %>
+    <% else %>
+      <%= link_to "ระบบเพื่อการเช็คชื่อและให้คะแนนจิตพิสัย", root_path , id: "logo" %>
+    <% end %>
+
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "หน้าหลัก",   root_path %></li>
+        <li><%= link_to "ความช่วยเหลือ",   help_path %></li>
+
+        <% if logged_in? %>
+          <% if admin_user? %>
+            <%= render 'layouts/faculty' %>
+            <%= render 'layouts/admin' %>
+            <%= render 'layouts/study' %>
+            <%= render 'layouts/subject' %>
+            <li><%= link_to "รายวิชา", secs_path %></li>
+          <% else %>
+            <li><%= link_to "รายวิชา", secs_path %></li>
+          <% end %>
+          <%= render 'layouts/session' %>
+        <% end %>
+        
+      </ul>
+    </nav>
+  </div>
+</header>

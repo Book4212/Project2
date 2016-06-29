@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ข้อมูลกิจกรรม</h1>
+<div class="table-responsive">
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th class="change"><%= link_to 'วิชา', activity_show_sec_path(:colum => 'subject')%></th>
+      <th class="change"><%= link_to 'ตอนเรียน', activity_show_sec_path(:colum => 'sec')%></th>
+      <th class="change"><%= link_to 'ชื่อกิจกรรม', activity_show_sec_path(:colum => 'activityname')%></th>
+      <th class="change"><%= link_to 'วันที่จัดกิจกรรม', activity_show_sec_path(:colum => 'dateactivity')%></th>
+      <th class="change"><%= link_to 'สถานที่', activity_show_sec_path(:colum => 'place')%></th>
+      <th class="change"><%= link_to 'ครั้งที่', activity_show_sec_path(:colum => 'count')%></th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td class="change"><%= activity.sec.subject.subject_Name %></td>
+        <td class="change"><%= activity.sec.sec %></td>
+        <td class="change"><%= activity.activityname %></td>
+        <td class="change"><%= activity.dateactivity %></td>
+        <td class="change"><%= activity.place %></td>
+        <td class="change"><%= activity.counts %></td>
+        <td><%= link_to 'ข้อมูลการเช็คชื่อ', check_show_activity_path(activity), class: "btn btn-warning btn-xs active" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<% if !student_user? %>
+  <%= link_to 'สร้างกิจกรรมใหม่', new_activity_path, class: "btn btn-primary btn-success active" %> 
+<% end %>
+<br>
+<br>
+<td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>

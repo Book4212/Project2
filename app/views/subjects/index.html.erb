@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Subjects </h1>
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Subject id</th>
+      <th>Subject name</th>
+      <% if admin_user? %>
+        <th colspan="3"></th>
+      <% else %>
+        <th colspan="1"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects = @subjects.sort_by(&:subject_ID)%>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.subject_ID %></td>
+        <td><%= subject.subject_Name %></td>
+        <td><%= link_to 'Show', subject %></td>
+        <% if admin_user? %>
+        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
+        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
