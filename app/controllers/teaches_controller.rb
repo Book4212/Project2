@@ -9,6 +9,11 @@ class TeachesController < ApplicationController
     else
       @teaches = Teach.all
     end
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @teaches.to_csv}
+    end
   end
 
   # GET /teaches/1

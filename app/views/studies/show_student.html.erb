@@ -1,6 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h1>ข้อมูลนักศึกษาที่เรียน</h1>
+  <div class="col-md-offset-2 col-md-2">
+    <p>ค้นหาชื่อวิชา</p>
+  </div>
+  <%= form_tag("/studies/show/#{@sec.id}", method: :get) do %>
+  <div class="col-md-4">
+    <%= text_field_tag('search') %>
+  </div>
+  <div class="col-md-2">
+    <%= submit_tag "ค้นหา" %>
+  </div>
+  <% end %>
+  <div class="col-md-2">
+  </div>
 <div class="table-responsive">
 <table class="table">
   <thead>

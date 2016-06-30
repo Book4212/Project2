@@ -16,6 +16,24 @@ class StudiesController < ApplicationController
     @sec = Sec.find(params[:sec_id])
     @studies = @sec.study
 
+    if params[:commit].present?
+      @students = Student.search(params[:search])
+      @users = []
+      @studies = []
+
+      @students.each do |student|
+        @users << student.user
+      end
+      @users.each do |user|
+        user.study.each do |study|
+          if study.sec_id == params[:sec_id].to_i
+            @studies << study
+          end
+        end
+      end
+    end
+
+
     if params[:colum] == 'user'
       @studies = @studies.sort_by{|a| a.user.student.studentid}
     elsif params[:colum] == 'name'

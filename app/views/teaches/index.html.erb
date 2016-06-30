@@ -31,5 +31,7 @@
 </table>
 </div>
 <br>
-
-<%= link_to 'New Teach', new_teach_path %>
+<% if admin_user? %>
+<br>
+<a class="btn btn-primary" href="/teaches.csv">Download CSV</a>
+<% end %>

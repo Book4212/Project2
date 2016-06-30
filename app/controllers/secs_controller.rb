@@ -14,12 +14,24 @@ class SecsController < ApplicationController
 
     if params[:commit].present?
       @subjects = Subject.search(params[:search])
-      @secs = []
+      @secss = []
+      if current_user.role == "teacher" 
+        @secs = current_user.secs
+      elsif current_user.role == "student" 
+        @secs = current_user.sec
+      else
+        @secs = Sec.all
+      end
       @subjects.each do |subject|
         subject.secs.each do |sec|
-          @secs << sec
+          @secs.each do |sec2|
+            if sec2 == sec
+              @secss << sec
+            end
+          end
         end
       end
+      @secs = @secss
     end
 
     if params[:colum] == 'subject_ID'

@@ -1,12 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h1>รายวิชา</h1>
+  <div class="col-md-offset-2 col-md-2">
+    <p>ค้นหาชื่อวิชา</p>
+  </div>
   <%= form_tag("/secs", method: :get) do %>
-    <tr>
-      <th><%= text_field_tag('search') %></th>
-      <th><%= submit_tag "ค้นหา" %></th>
-    </tr>
+  <div class="col-md-4">
+    <%= text_field_tag('search') %>
+  </div>
+  <div class="col-md-2">
+    <%= submit_tag "ค้นหา" %>
+  </div>
   <% end %>
+  <div class="col-md-2">
+  </div>
 <div class="table-responsive">
 <table class="table table-hover table-bordered">
   <thead>
@@ -38,20 +45,20 @@
         <td class="change"><%= sec.timestudy.strftime('%H:%M:%S') %>
 
       
-        <td><%= link_to 'อาจารย์ผู้สอน', teach_show_sec_path(sec), class: "btn btn-primary btn-xs active" %></td>
+        <td class="change"><%= link_to 'อาจารย์ผู้สอน', teach_show_sec_path(sec), class: "btn btn-primary btn-xs active" %></td>
 
         <% if teacher_user? %>
-        <td><%= link_to 'นักศึกษา', study_show_student_path(sec), class: "btn btn-warning btn-xs active" %></td>
+        <td class="change"><%= link_to 'นักศึกษา', study_show_student_path(sec), class: "btn btn-warning btn-xs active" %></td>
         <% end %>
         <% if student_user? %>
-          <td><%= link_to 'ข้อมูลเช็คชื่อเข้าชั้นเรียน', check_show_study_path(:user_id => current_user,:sec_id => sec), class: "btn btn-warning btn-xs active" %></td>
-          <td><%= link_to 'ข้อมูลคะแนนจิตพิสัย', eff_show_student_path(:user_id =>current_user,:sec_id => sec), class: "btn btn-success btn-xs active" %></td>
+          <td class="change"><%= link_to 'ข้อมูลเช็คชื่อเข้าชั้นเรียน', check_show_study_path(:user_id => current_user,:sec_id => sec), class: "btn btn-warning btn-xs active" %></td>
+          <td class="change"><%= link_to 'ข้อมูลคะแนนจิตพิสัย', eff_show_student_path(:user_id =>current_user,:sec_id => sec), class: "btn btn-success btn-xs active" %></td>
         <% end %>
         <% if admin_user? %>
-          <td><%= link_to 'นักศึกษา', study_show_student_path(sec), class: "btn btn-warning btn-xs active" %></td>
+          <td class="change"><%= link_to 'นักศึกษา', study_show_student_path(sec), class: "btn btn-warning btn-xs active" %></td>
         <% end %>
 
-        <td><%= link_to 'กิจกรรม', activity_show_sec_path(sec), class: "btn btn-info btn-xs active" %></td>
+        <td class="change"><%= link_to 'กิจกรรม', activity_show_sec_path(sec), class: "btn btn-info btn-xs active" %></td>
 
         <% if admin_user? %>
           <td><%= link_to 'Show', sec %></td>

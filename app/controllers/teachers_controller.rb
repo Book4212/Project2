@@ -5,6 +5,11 @@ class TeachersController < ApplicationController
   # GET /teachers.json
   def index
     @teachers = Teacher.all
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @teachers.to_csv}
+    end
   end
 
   # GET /teachers/1
