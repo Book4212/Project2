@@ -5,6 +5,11 @@ class CheckstudiesController < ApplicationController
   # GET /checkstudies.json
   def index
     @checkstudies = Checkstudy.all
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @checkstudies.to_csv}
+    end
   end
 
   # GET /checkstudies/1

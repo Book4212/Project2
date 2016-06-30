@@ -5,8 +5,12 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @subjects = Subject.all
-    @teachs = Teach.where(:user_id => current_user)
+    # @teachs = Teach.where(:user_id => current_user)
 
+    respond_to do |format|
+      format.html
+      format.csv {render text: @subjects.to_csv}
+    end
   end
 
   # GET /subjects/1

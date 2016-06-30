@@ -4,7 +4,6 @@ class CreateStudents < ActiveRecord::Migration
       t.string :studentid
       t.string :uid
       t.references :user, index: true, foreign_key: true
-      t.string :facebook
       t.integer :firstyear
       t.references :department, index: true, foreign_key: true
 

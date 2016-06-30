@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 20160615094037) do
     t.string   "studentid"
     t.string   "uid"
     t.integer  "user_id"
-    t.string   "facebook"
     t.integer  "firstyear"
     t.integer  "department_id"
     t.datetime "created_at",    null: false

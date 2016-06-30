@@ -5,6 +5,11 @@ class DepartmentsController < ApplicationController
   # GET /departments.json
   def index
     @departments = Department.all
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @departments.to_csv}
+    end
   end
 
   # GET /departments/1

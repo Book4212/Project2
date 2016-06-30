@@ -4,7 +4,6 @@ one:
   studentid: MyString
   uid: MyString
   user_id: 
-  facebook: MyString
   firstyear: 
   dapartment_id: 
 
@@ -12,6 +11,5 @@ two:
   studentid: MyString
   uid: MyString
   user_id: 
-  facebook: MyString
   firstyear: 
   dapartment_id: 

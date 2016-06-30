@@ -44,10 +44,12 @@ class SecsController < ApplicationController
       @secs = @secs.sort_by{|a| a.classroom}
     elsif params[:colum] == 'timestudy'
       @secs = @secs.sort_by{|a| a.timestudy}
-
     end
 
-    
+    respond_to do |format|
+      format.html
+      format.csv {render text: @secs.to_csv}
+    end
   end
 
   # GET /secs/1

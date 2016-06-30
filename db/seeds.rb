@@ -117,28 +117,24 @@ Teacher.create!(  teacherid: "1102001884005",
 Student.create!(  studentid: "5501012630206",
                   uid: "66996103",
                   user: student1 ,
-                  facebook: "student1@hotmail.com",
                   firstyear: 2555,
                   department: department1)
 
 Student.create!(  studentid: "5501012630207",
                   uid: "66996104",
                   user: student2 ,
-                  facebook: "student2@hotmail.com",
                   firstyear: 2555,
                   department: department1)
 
 Student.create!(  studentid: "5501012630208",
                   uid: "66996105",
                   user: student3 ,
-                  facebook: "student3@hotmail.com",
                   firstyear: 2555,
                   department: department1)
 
 Student.create!(  studentid: "5501012630209",
                   uid: "368DB201",
                   user: student4 ,
-                  facebook: "student4@hotmail.com",
                   firstyear: 2555,
                   department: department1)
 
