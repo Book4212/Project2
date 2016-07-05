@@ -88,6 +88,7 @@
 </table>
 </div>
 <% if !teacher_user? %>
+  <td><%= link_to 'Download CSV', check_show_study_path(:format => "csv",:user_id => @user,:sec_id => @sec), class: "btn btn-primary btn-default active" %></td>
   <td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>
 <% end %>
 <% if !student_user? %>

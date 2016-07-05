@@ -49,6 +49,11 @@ class CheckstudiesController < ApplicationController
     elsif params[:colum] == 'name'
       @checkstudies = @checkstudies.sort_by{|a| a.user.name}
     end
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @checkstudies.to_csv}
+    end
   end
 
   # GET /checkstudies/new

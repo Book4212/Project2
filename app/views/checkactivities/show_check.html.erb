@@ -23,6 +23,7 @@
   </tbody>
 </table>
 </div>
+<td><%= link_to 'Download CSV', check_show_activity_path(:format => "csv",:activity_id => @activity), class: "btn btn-primary btn-default active" %></td>
 <td><%= link_to 'BACK', activity_show_sec_path(@activity), class: "btn btn-primary btn-default active" %></td>
 <br>
 

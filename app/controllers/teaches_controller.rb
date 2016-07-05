@@ -24,6 +24,11 @@ class TeachesController < ApplicationController
   def show_teach
     @sec = Sec.find(params[:sec_id])
     @teaches = @sec.teach
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @teaches.to_csv}
+    end
   end
 
   # GET /teaches/new

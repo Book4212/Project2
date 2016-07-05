@@ -33,6 +33,7 @@
 <br>
 
 <% if !student_user? %>
+  <td><%= link_to 'Download CSV', activity_show_sec_path(:format => "csv",:sec_id => @sec), class: "btn btn-primary btn-default active" %></td>
   <%= link_to 'สร้างกิจกรรมใหม่', new_activity_path, class: "btn btn-primary btn-success active" %> 
 <% end %>
 <br>

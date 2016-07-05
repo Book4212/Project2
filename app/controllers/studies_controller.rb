@@ -47,6 +47,11 @@ class StudiesController < ApplicationController
     elsif params[:colum] == 'sec'
       @studies = @studies.sort_by{|a| a.sec.sec}
     end
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @studies.to_csv}
+    end
   end
 
   # GET /studies/1

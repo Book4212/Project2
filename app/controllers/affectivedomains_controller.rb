@@ -5,6 +5,11 @@ class AffectivedomainsController < ApplicationController
   # GET /affectivedomains.json
   def index
     @affectivedomains = Affectivedomain.all
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @affectivedomains.to_csv}
+    end
   end
 
   def show_eff
@@ -29,6 +34,11 @@ class AffectivedomainsController < ApplicationController
       @affectivedomains = @affectivedomains.sort_by{|a| a.point}
     elsif params[:colum] == 'active_day'
       @affectivedomains = @affectivedomains.sort_by{|a| a.active_day}
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @affectivedomains.to_csv}
     end
   end
 

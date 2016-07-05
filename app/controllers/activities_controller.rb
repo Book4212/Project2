@@ -5,6 +5,11 @@ class ActivitiesController < ApplicationController
   # GET /activities.json
   def index
     @activities = Activity.all
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @activities.to_csv}
+    end
   end
 
   # GET /activities/1
@@ -30,6 +35,11 @@ class ActivitiesController < ApplicationController
       @activities = @activities.sort_by{|a| a.place}
     elsif params[:colum] == 'count'
       @activities = @activities.sort_by{|a| a.counts}
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @activities.to_csv}
     end
   end
 

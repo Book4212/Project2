@@ -5,6 +5,11 @@ class CheckactivitiesController < ApplicationController
   # GET /checkactivities.json
   def index
     @checkactivities = Checkactivity.all
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @checkactivities.to_csv}
+    end
   end
 
   # GET /checkactivities/1
@@ -22,6 +27,11 @@ class CheckactivitiesController < ApplicationController
       @checkactivities = @checkactivities.sort_by{|a| a.activity.activityname}
     elsif params[:colum] == 'time'
       @checkactivities = @checkactivities.sort_by{|a| a.time_check}
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @checkactivities.to_csv}
     end
   end
 
