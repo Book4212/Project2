@@ -87,11 +87,11 @@
   </tbody>
 </table>
 </div>
-<% if !teacher_user? %>
-  <td><%= link_to 'Download CSV', check_show_study_path(:format => "csv",:user_id => @user,:sec_id => @sec), class: "btn btn-primary btn-default active" %></td>
-  <td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>
-<% end %>
 <% if !student_user? %>
-  <td><%= link_to 'BACK', study_show_student_path(@sec), class: "btn btn-primary btn-default active" %></td>
+  <td><%= link_to 'Download CSV', check_show_study_path(:format => "csv",:user_id => @user,:sec_id => @sec), class: "btn btn-primary btn-default active" %></td>
+  <td><%= link_to 'BACK', tudy_show_student_path(@sec), class: "btn btn-primary btn-default active" %></td>
+<% end %>
+<% if !teacher_user? %>
+  <td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>
 <% end %>
 <br>

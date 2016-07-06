@@ -27,7 +27,9 @@
   </tbody>
 </table>
 </div>
+<% if !student_user? %>
 <td><%= link_to 'Download CSV', teach_show_sec_path(:format => "csv",:sec_id => @sec), class: "btn btn-primary btn-default active" %></td>
+<% end %>
 <td><%= link_to 'BACK', secs_path, class: "btn btn-primary btn-default active" %></td>
 <br>
 
